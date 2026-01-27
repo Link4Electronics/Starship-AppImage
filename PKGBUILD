@@ -10,11 +10,10 @@ pkgver=2.0.0
 pkgrel=3
 pkgdesc="An unofficial native port of Star Fox 64"
 license=("CC0-1.0" "MIT")
-arch=('powerpc' 'powerpc64' 'powerpc64le' 'espresso')
+arch=('x86_64' 'aarch64')
 url="https://github.com/HarbourMasters/${_reponame}"
 depends=("sdl2" "zenity" "libogg" "libvorbis" "libzip" "tinyxml2" "fmt" "spdlog" "zlib" "bzip2")
 makedepends=("git" "cmake" "ninja" "nlohmann-json")  # nlohmann-json is set as required on LUS's CMakeLists.txt but not dynamic linked
-install="starship-sf64.install"
 options=('!debug' 'strip')
 source=("${_reponame}-${pkgver}.tar.gz::https://github.com/HarbourMasters/${_reponame}/archive/refs/tags/v${pkgver}.tar.gz"
         "Torch-${_torch_commit:0:8}.tar.gz::https://github.com/HarbourMasters/Torch/archive/${_torch_commit}.tar.gz"
@@ -24,8 +23,7 @@ source=("${_reponame}-${pkgver}.tar.gz::https://github.com/HarbourMasters/${_rep
         "lus-save-file-path.patch::https://github.com/Kenix3/libultraship/pull/908.patch"
         "starship-non-portable-fix.patch"
         "starship-stack-underflow-guard.patch"
-        "starship-sf64.desktop"
-        "imgui-befix.patch")
+        "starship-sf64.desktop")
 sha256sums=('e96e03c5f077d045ced5488208b60bdc4077c381158d17b2571f9a476622d20b'
             'c6d98c370efa078029a98d6cc71d876d530b0827a04f2235b65be5dbb4d31220'
             '233f9d4e38b5b2b492b6d8e5e9e856605439cb7d955c7668fdf22809916bc6e9'
@@ -34,8 +32,7 @@ sha256sums=('e96e03c5f077d045ced5488208b60bdc4077c381158d17b2571f9a476622d20b'
             '906d6265cf744c6f988f39b5986232304801a8a49aea1e39cf8911bd83ddc497'
             '4a83fe383d6f134258c2dbc59b4c18e97a7a68893a6ce798d0cf83866de26382'
             'fdd57de6bdec69803f13897a30116c8a01c9e5dd3eeb83e5e754b0bfb5723c12'
-            '6cd0d616be3f3c245f6ab414a5d99cb6eae642d5cee23554c6c4b35b0fbd1337'
-            'f71d97a8c940cda521b7ec1348798441b6048dc7b2baf47a749f0b927c12c428')
+            '6cd0d616be3f3c245f6ab414a5d99cb6eae642d5cee23554c6c4b35b0fbd1337')
 
 SHIP_PREFIX=/opt/starship-sf64
 
@@ -69,7 +66,6 @@ build() {
     -DNON_PORTABLE=On \
     -DCMAKE_INSTALL_PREFIX=$SHIP_PREFIX
 
-  patch -Np1 -i "${srcdir}/imgui-befix.patch" -d "build/_deps/imgui-src/"
   cmake --build build --config $BUILD_TYPE $NINJAFLAGS
   cmake --build build --config $BUILD_TYPE --target GeneratePortO2R  # Generates starship.o2r
 }
