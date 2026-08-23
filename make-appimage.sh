@@ -3,21 +3,16 @@
 set -eu
 
 ARCH=$(uname -m)
-VERSION=$(pacman -Q starship-sf64 | awk '{print $2; exit}')
-export ARCH VERSION
+export ARCH
 export OUTPATH=./dist
 export ADD_HOOKS="self-updater.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export ICON=/usr/share/pixmaps/starship-sf64.png
-export DESKTOP=/usr/share/applications/starship-sf64.desktop
 export DEPLOY_OPENGL=1
 
 # Deploy dependencies
-quick-sharun /usr/bin/StarshipSF64
-mv /opt/starship-sf64/starship.o2r ./AppDir/bin
-mv /opt/starship-sf64/config.yml ./AppDir/bin
-mv /opt/starship-sf64/gamecontrollerdb.txt ./AppDir/bin
-echo 'SHARUN_WORKING_DIR=${SHARUN_DIR}/bin' >> ./AppDir/.env
+#quick-sharun /usr/bin/StarshipSF64
+quick-sharun ./AppDir/bin/* /usr/bin/zenity
+#echo 'SHARUN_WORKING_DIR=${SHARUN_DIR}/bin' >> ./AppDir/.env
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
