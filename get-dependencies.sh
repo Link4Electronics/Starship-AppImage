@@ -26,9 +26,9 @@ make-aur-package zenity-rs-bin
 echo "Making stable build of Starship..."
 echo "---------------------------------------------------------------"
 REPO="https://github.com/HarbourMasters/Starship"
-VERSION="$(git ls-remote --tags --sort="v:refname" "$REPO" | tail -n1 | sed 's/.*\///; s/\^{}//; s/^v//')"
-git clone --branch "$VERSION" --single-branch --recursive --depth 1 "$REPO" ./Starship
-echo "$VERSION" > ~/version
+TAG="$(git ls-remote --tags --sort="v:refname" "$REPO" | tail -n1 | sed 's/.*\///; s/\^{}//')"
+git clone --branch "$TAG" --single-branch --recursive --depth 1 "$REPO" ./Starship
+echo "${TAG#v}" > ~/version
 
 mkdir -p ./AppDir/bin
 cd ./Starship
