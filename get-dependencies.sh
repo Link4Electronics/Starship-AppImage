@@ -34,6 +34,7 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./Starship
 patch -Np1 -i "../starship-stack-underflow-guard.patch"
+sed -i 's/-mfpu=neon/-mcpu=native/' CMakeLists.txt
 
 cmake . \
     -Bbuild \
