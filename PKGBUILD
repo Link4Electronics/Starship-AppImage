@@ -63,7 +63,6 @@ build() {
   cmake . \
     -Bbuild \
     -GNinja \
-    -DNON_PORTABLE=On \
     -DCMAKE_INSTALL_PREFIX=$SHIP_PREFIX
 
   cmake --build build --config $BUILD_TYPE $NINJAFLAGS
