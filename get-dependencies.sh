@@ -45,7 +45,7 @@ cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
 
 mv -v build/assets ../AppDir/bin
-mv -v build/StarshipSF64 ../AppDir/bin
+mv -v build/Starship ../AppDir/bin
 mv -v build/config.yml ../AppDir/bin
 mv -v build/starship.o2r ../AppDir/bin
 #mv -v libultraship/libtcc.so ../AppDir/bin
