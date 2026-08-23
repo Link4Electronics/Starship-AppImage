@@ -50,4 +50,4 @@ mv -v build/starship.o2r ../AppDir/bin
 #mv -v libultraship/libtcc.so ../AppDir/bin
 wget -O ../AppDir/bin/gamecontrollerdb.txt https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
 cp -v logo.png ../AppDir/.DirIcon
-mv -v logo.png ../AppDir/ghostship.png
+mv -v logo.png ../AppDir/starship.png
