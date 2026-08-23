@@ -33,7 +33,7 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./Starship
 patch -Np1 -i ../starship-stack-underflow-guard.patch
-patch -Np1 -i ../starship-non-portable-fix.patch
+#patch -Np1 -i ../starship-non-portable-fix.patch
 sed -i 's/-mfpu=neon/-mcpu=native/' CMakeLists.txt
 
 cmake . \
