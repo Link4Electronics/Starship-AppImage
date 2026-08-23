@@ -1,0 +1,3 @@
+#!/bin/sh
+export SHIP_HOME="${SHIP_HOME:-$DATADIR/sm64}"
+mkdir -p "$SHIP_HOME"
