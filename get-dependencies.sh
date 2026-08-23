@@ -28,11 +28,11 @@ echo "Making stable build of Starship..."
 echo "---------------------------------------------------------------"
 REPO="https://github.com/HarbourMasters/Starship"
 VERSION="$(git ls-remote --tags --sort="v:refname" "$REPO" | tail -n1 | sed 's/.*\///; s/\^{}//')"
-git clone --branch "$VERSION" --single-branch --recursive --depth 1 "$REPO" ./Ghostship
+git clone --branch "$VERSION" --single-branch --recursive --depth 1 "$REPO" ./Starship
 echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
-cd ./Ghostship
+cd ./Starship
 patch -Np1 -i "../starship-stack-underflow-guard.patch"
 
 cmake . \
