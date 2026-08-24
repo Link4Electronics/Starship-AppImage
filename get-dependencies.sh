@@ -47,4 +47,3 @@ for a in assets Starship config.yml starship.o2r; do
 	mv -v ./Starship/build/"$a" ./AppDir/bin
 done
 wget -O ./AppDir/bin/gamecontrollerdb.txt https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
-mv -v ./Starship/logo.png ./AppDir/starship.png
