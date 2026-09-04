@@ -10,7 +10,6 @@ pacman -Syu --noconfirm \
 	cmake         \
 	fmt           \
 	libzip        \
-	ninja         \
 	nlohmann-json \
 	sdl2          \
 	spdlog        \
@@ -36,7 +35,7 @@ git clone --branch "$TAG" --single-branch --recursive --depth 1 "$REPO" ./Starsh
 	patch -Np1 -i ../patches/torch-src-dest-paths.patch
 	sed -i 's/-mfpu=neon/-mcpu=native/' CMakeLists.txt
 
-	cmake ./ -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+	cmake ./ -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 	cmake --build build --config Release -j$(nproc)
 	cmake --build build --config Release --target GeneratePortO2R -j$(nproc)
 	echo "${TAG#v}" > ~/version
